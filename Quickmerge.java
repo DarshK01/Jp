@@ -1,7 +1,12 @@
-interface Sortable { void sort(int[] arr); }
+interface Sortable {
+    void sort(int[] arr);
+}
 
 class QuickSort implements Sortable {
-    public void sort(int[] arr) { quickSort(arr, 0, arr.length - 1); }
+    public void sort(int[] arr) {
+        quickSort(arr, 0, arr.length - 1);
+    }
+
     private void quickSort(int[] arr, int low, int high) {
         if (low < high) {
             int pi = partition(arr, low, high);
@@ -9,6 +14,7 @@ class QuickSort implements Sortable {
             quickSort(arr, pi + 1, high);
         }
     }
+
     private int partition(int[] arr, int low, int high) {
         int pivot = arr[high], i = low - 1;
         for (int j = low; j < high; j++)
@@ -16,20 +22,28 @@ class QuickSort implements Sortable {
         swap(arr, i + 1, high);
         return i + 1;
     }
+
     private void swap(int[] arr, int i, int j) {
-        int t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+        int t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
     }
 }
 
 class MergeSort implements Sortable {
-    public void sort(int[] arr) { mergeSort(arr, 0, arr.length - 1); }
+    public void sort(int[] arr) {
+        mergeSort(arr, 0, arr.length - 1);
+    }
+
     private void mergeSort(int[] arr, int l, int r) {
         if (l < r) {
             int m = (l + r) / 2;
-            mergeSort(arr, l, m); mergeSort(arr, m + 1, r);
+            mergeSort(arr, l, m);
+            mergeSort(arr, m + 1, r);
             merge(arr, l, m, r);
         }
     }
+
     private void merge(int[] arr, int l, int m, int r) {
         int[] L = new int[m - l + 1], R = new int[r - m];
         for (int i = 0; i < L.length; i++) L[i] = arr[l + i];
@@ -46,7 +60,9 @@ public class SortTest {
     public static void main(String[] args) {
         int[] arr1 = {5, 2, 9, 1, 7}, arr2 = {5, 2, 9, 1, 7};
         Sortable quick = new QuickSort(), merge = new MergeSort();
-        quick.sort(arr1); merge.sort(arr2);
+        quick.sort(arr1);
+        merge.sort(arr2);
+
         System.out.println("Quick Sort:");
         for (int n : arr1) System.out.print(n + " ");
         System.out.println("\nMerge Sort:");
