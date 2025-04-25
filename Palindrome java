@@ -1,0 +1,21 @@
+package com.mycompany.palindromeofnum;
+
+public class Palindromeofnum {
+
+    public static void main(String[] args) {
+        int num = 212;
+        int rem, rev = 0, a = num;
+
+        while (a != 0) {
+            rem = a % 10;
+            rev = rev * 10 + rem;
+            a = a / 10;
+        }
+
+        if (num == rev) {
+            System.out.println("Yes, it is a palindrome number.");
+        } else {
+            System.out.println("No, it is not a palindrome number.");
+        }
+    }
+}
